@@ -4,16 +4,18 @@
     "nombre": "Guía 1 · Vectores",
     "archivo": "guias/vectores.html",
     "hojas": 27,
-    "version": "2026-10-14 11:29 · 45795de",
-    "ronda": 2,
-    "respuestas": "respuestas/vectores-ronda1.json"
+    "version": "59f2784",
+    "generada": "2026-10-14 13:53",
+    "ronda": 3,
+    "respuestas": "respuestas/vectores-ronda2.json"
   },
   {
     "id": "matrices",
     "nombre": "Guía 2 · Matrices",
     "archivo": "guias/matrices.html",
     "hojas": 37,
-    "version": "2026-10-14 11:29 · 8122ea6",
+    "version": "8122ea6",
+    "generada": "2026-10-14 13:55",
     "ronda": 1,
     "respuestas": null
   }
