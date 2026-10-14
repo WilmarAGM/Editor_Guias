@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor de guías · Revisión</title>
+<meta name="description" content="Revisión de las guías de Álgebra Lineal (REMAT): marca un bloque, escribe la corrección y descarga el archivo .md.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23005a96'/%3E%3Cpath d='M9 22l9-13 3 2-9 13-4 1z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<header class="barra">
+  <div class="marca">
+    <span class="logo" aria-hidden="true">✎</span>
+    <div><strong>Editor de guías</strong><small>Álgebra Lineal · REMAT</small></div>
+  </div>
+
+  <label class="campo campo-guia">
+    <span>Guía a corregir</span>
+    <select id="guia" aria-label="Guía a corregir" disabled><option>Cargando…</option></select>
+  </label>
+
+  <label class="campo">
+    <span>Revisor</span>
+    <input id="revisor" type="text" placeholder="Tu nombre" autocomplete="name" maxlength="80">
+  </label>
+
+  <div class="acciones">
+    <span id="contador" class="contador" aria-live="polite">0 correcciones</span>
+    <button id="btn-cargar" type="button" class="sec" title="Retomar una revisión desde un .md descargado antes">Cargar .md</button>
+    <input id="archivo" type="file" accept=".md,text/markdown,text/plain" hidden>
+    <button id="btn-descargar" type="button" class="pri">Descargar correcciones (.md)</button>
+  </div>
+</header>
+
+<main class="trabajo">
+  <section class="visor" aria-label="Guía">
+    <div id="cargando" class="cargando">Cargando la guía…</div>
+    <iframe id="marco" title="Guía seleccionada"></iframe>
+  </section>
+
+  <aside id="panel" class="panel" aria-label="Correcciones">
+    <!-- Estado 1: nada seleccionado -->
+    <div id="vista-inicio">
+      <h2>Cómo corregir</h2>
+      <ol class="pasos">
+        <li>Elige la guía en el menú <b>Guía a corregir</b>.</li>
+        <li>Haz clic sobre el bloque que quieres corregir: una definición, un ejemplo, una figura, un ejercicio o el título de la hoja.</li>
+        <li>Elige qué hacer con él, escribe y pulsa <b>Guardar</b>.</li>
+        <li>Al terminar (o cuando quieras pausar), pulsa <b>Descargar correcciones (.md)</b> y envía el archivo.</li>
+      </ol>
+      <p class="nota">Lo que escribes se guarda en este navegador. Si cambias de equipo o borras los datos del navegador, usa <b>Cargar .md</b> con el último archivo descargado para retomar.</p>
+      <h3 id="titulo-lista">Correcciones de esta guía</h3>
+      <p id="lista-vacia" class="vacio">Todavía no hay correcciones.</p>
+      <ul id="lista" class="lista"></ul>
+    </div>
+
+    <!-- Estado 2: un bloque seleccionado -->
+    <form id="vista-edicion" hidden autocomplete="off">
+      <div class="cab-bloque">
+        <button type="button" id="btn-volver" class="enlace">← Todas las correcciones</button>
+        <p id="b-hoja" class="b-hoja"></p>
+        <h2 id="b-titulo"></h2>
+        <p class="b-meta"><span id="b-tipo" class="chip"></span> <code id="b-id"></code></p>
+        <button type="button" id="btn-padre" class="enlace" hidden>↑ Seleccionar el bloque que lo contiene</button>
+      </div>
+
+      <details class="actual">
+        <summary>Texto actual del bloque (LaTeX)</summary>
+        <pre id="b-texto"></pre>
+      </details>
+
+      <fieldset class="tipo-accion">
+        <legend>¿Qué hacer con este bloque?</legend>
+        <label><input type="radio" name="accion" value="comentar" checked> Comentar</label>
+        <label><input type="radio" name="accion" value="proponer"> Proponer texto</label>
+        <label><input type="radio" name="accion" value="eliminar"> Eliminar</label>
+        <label><input type="radio" name="accion" value="mover"> Mover</label>
+        <label><input type="radio" name="accion" value="aprobar"> Aprobado</label>
+      </fieldset>
+
+      <div id="grupo-mover" class="grupo" hidden>
+        <label class="fila-campos">Moverlo
+          <select id="mover-donde"><option value="antes">antes de</option><option value="despues">después de</option></select>
+        </label>
+        <input id="mover-ref" type="text" placeholder="¿De qué bloque u hoja? Ej.: «la definición de norma», hoja 12">
+      </div>
+
+      <div id="grupo-propuesto" class="grupo" hidden>
+        <label for="propuesto">Texto propuesto <small>(fórmulas entre $…$)</small></label>
+        <textarea id="propuesto" rows="9" spellcheck="true"></textarea>
+        <button type="button" id="btn-copiar-actual" class="enlace">Empezar desde el texto actual</button>
+      </div>
+
+      <div class="grupo">
+        <label for="comentario" id="lbl-comentario">Comentario</label>
+        <textarea id="comentario" rows="5" spellcheck="true" placeholder="¿Qué está mal o qué falta? (opcional si es «Aprobado»)"></textarea>
+      </div>
+
+      <p id="aviso-form" class="aviso" role="alert" hidden></p>
+      <div class="botones">
+        <button type="submit" class="pri">Guardar</button>
+        <button type="button" id="btn-cancelar" class="sec">Cancelar</button>
+        <button type="button" id="btn-borrar" class="peligro" hidden>Quitar corrección</button>
+      </div>
+      <p class="atajo">Ctrl + Enter guarda · Esc cancela</p>
+    </form>
+  </aside>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
