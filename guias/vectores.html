@@ -65,14 +65,14 @@ body { background: var(--bg-body); color: var(--ink); margin: 0;
        padding: 40px 20px; display: flex; flex-direction: column; align-items: center; gap: 40px; }
 
 /* Página oficio horizontal (33 x 21.59 cm), impresa a doble cara y ARGOLLADA A LA IZQUIERDA (tipo libro).
-   El margen de 2.5 cm va siempre del lado de las argollas y la cuadrícula siempre hacia el borde exterior:
-     impares (anverso): [argollas 2.5 cm] contenido | cuadrícula [1 cm]
-     pares   (reverso): [1 cm] cuadrícula | contenido [2.5 cm argollas]
-   El margen exterior de 1 cm evita que la impresora recorte la cuadrícula.
+   El margen de 2.2 cm va siempre del lado de las argollas y la cuadrícula siempre hacia el borde exterior:
+     impares (anverso): [argollas 2.2 cm] contenido | cuadrícula [0.7 cm]
+     pares   (reverso): [0.7 cm] cuadrícula | contenido [2.2 cm argollas]
+   El margen exterior de 0.7 cm evita que la impresora recorte la cuadrícula (casi todas dejan 4-5 mm sin imprimir).
    Las ilustraciones van siempre del lado opuesto a la cuadrícula (el del lomo). */
 .page { width: 33cm; height: 21.59cm; flex: 0 0 auto; background: var(--bg-page); border-radius: 12px;
-        padding: 1cm 1cm 1cm 2.5cm; box-sizing: border-box; display: flex; overflow: hidden; position: relative; }
-.page.par { flex-direction: row-reverse; padding: 1cm 2.5cm 1cm 1cm; }
+        padding: 0.7cm 0.7cm 0.7cm 2.2cm; box-sizing: border-box; display: flex; overflow: hidden; position: relative; }
+.page.par { flex-direction: row-reverse; padding: 0.7cm 2.2cm 0.7cm 0.7cm; }
 .page.par .content-column { padding-right: 0; padding-left: 0.2cm; }
 
 .page.solo-notas .notes-column { flex: 1; }
