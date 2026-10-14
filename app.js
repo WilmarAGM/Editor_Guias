@@ -2,7 +2,10 @@
    La guía se muestra en un iframe (mismo origen). Cada bloque trae data-bloque="H2b" (nombre de su
    variable en build_*.py); lo que no lo trae recibe un identificador derivado del bloque que lo contiene.
    Las correcciones viven en localStorage (por guía) y salen en un .md con los datos al final para poder
-   cargarlo de nuevo. */
+   cargarlo de nuevo.
+   Rondas: guias.json dice la ronda abierta y, si la hay, el archivo de respuestas a la ronda anterior
+   (estado y respuesta por bloque). Cuando la guía cambia de versión, las correcciones guardadas en el
+   navegador se archivan y la ronda nueva empieza en blanco. */
 'use strict';
 
 const FORMATO = 1;
@@ -14,6 +17,11 @@ const ACCIONES = {
   eliminar: { nombre: 'Eliminar', color: '#a63a3a' },
   mover:    { nombre: 'Mover', color: '#6b4fa0' },
   aprobar:  { nombre: 'Aprobado', color: '#2f7d4f' },
+};
+const ESTADOS = {
+  aplicado:    { nombre: 'Aplicado', plural: 'aplicados', color: '#2f7d4f' },
+  consulta:    { nombre: 'Pregunta para ti', plural: 'preguntas para ti', color: '#b47818' },
+  no_aplicado: { nombre: 'No aplicado', plural: 'no aplicados', color: '#5d6b77' },
 };
 
 const $ = id => document.getElementById(id);
@@ -28,6 +36,9 @@ const ui = {
   grupoProp: $('grupo-propuesto'), propuesto: $('propuesto'), copiarActual: $('btn-copiar-actual'),
   comentario: $('comentario'), lblComentario: $('lbl-comentario'),
   aviso: $('aviso-form'), cancelar: $('btn-cancelar'), borrar: $('btn-borrar'), toast: $('toast'),
+  tabMias: $('tab-mias'), tabResp: $('tab-resp'), panelMias: $('panel-mias'), panelResp: $('panel-resp'),
+  respTitulo: $('resp-titulo'), respResumen: $('resp-resumen'), verCorregido: $('ver-corregido'),
+  listaResp: $('lista-resp'), archivoRonda: $('archivo-ronda'), btnArchivo: $('btn-archivo'), tituloLista: $('titulo-lista'),
 };
 
 const estado = {
@@ -35,7 +46,8 @@ const estado = {
   guia: null,         // la guía abierta
   doc: null,          // documento del iframe
   bloques: new Map(), // id -> {el, id, hoja, tituloHoja, tipo, titulo, orden}
-  datos: null,        // {correcciones: {id: c}, descargado: huella}
+  datos: null,        // {version, correcciones: {id: c}, descargado: huella, archivo: [rondas anteriores]}
+  resp: null,         // respuestas a la ronda anterior (respuestas/<guia>-rondaN.json)
   sel: null,          // bloque seleccionado
   sucio: false,       // formulario con cambios sin guardar
 };
@@ -159,7 +171,8 @@ function abrirGuia(id) {
   estado.guia = g;
   estado.sel = null;
   estado.sucio = false;
-  estado.datos = almacen.leer('guia.' + id) || { correcciones: {}, descargado: null };
+  estado.datos = cargarDatos(g);
+  estado.resp = null;
   ui.guia.value = id;
   almacen.escribir('ultimaGuia', id);
   const url = new URL(location.href);
@@ -169,7 +182,115 @@ function abrirGuia(id) {
   ui.cargando.hidden = false;
   ui.cargando.textContent = `Cargando ${g.nombre}…`;
   mostrarInicio();
+  ui.tituloLista.textContent = `Tus correcciones · ronda ${g.ronda}`;
+  ui.tabMias.textContent = `Ronda ${g.ronda}: corregir`;
+  ui.tabResp.hidden = !g.respuestas;
+  mostrarPestana(g.respuestas && !Object.keys(estado.datos.correcciones).length ? 'resp' : 'mias');
+  if (g.respuestas) {
+    fetch(`${g.respuestas}?v=${encodeURIComponent(g.version)}`, { cache: 'no-cache' })
+      .then(r => (r.ok ? r.json() : null)).catch(() => null)
+      .then(resp => { if (estado.guia === g) { estado.resp = resp; pintarRespuestas(); pintarMarcas(); } });
+  } else {
+    pintarRespuestas();
+  }
   ui.marco.src = `${g.archivo}?v=${encodeURIComponent(g.version)}`;
+}
+
+/* Datos guardados de la guía. Si son de otra versión (la guía se corrigió y se republicó), sus correcciones
+   pasan al archivo y la ronda nueva empieza en blanco. Los datos sin versión (antes de las rondas) se toman
+   como de la versión revisada si la guía ya tiene respuestas, y si no, como de la versión actual. */
+function cargarDatos(g) {
+  const d = almacen.leer('guia.' + g.id) || { correcciones: {}, descargado: null };
+  d.archivo = d.archivo || [];
+  const n = Object.keys(d.correcciones).length;
+  if (!d.version) d.version = n && g.respuestas ? 'anterior' : g.version;
+  if (d.version !== g.version) {
+    if (n) {
+      d.archivo.push({ version: d.version, ronda: d.ronda || g.ronda - 1, correcciones: d.correcciones, fecha: ahora() });
+      setTimeout(() => toast(`La guía se actualizó con las correcciones. Tus ${n} correcciones anteriores quedaron archivadas; empieza la ronda ${g.ronda}.`), 600);
+    }
+    d.correcciones = {};
+    d.descargado = null;
+    d.version = g.version;
+  }
+  d.ronda = g.ronda;
+  almacen.escribir('guia.' + g.id, d);
+  return d;
+}
+
+function mostrarPestana(cual) {
+  const resp = cual === 'resp' && !ui.tabResp.hidden;
+  ui.panelResp.hidden = !resp;
+  ui.panelMias.hidden = resp;
+  ui.tabResp.setAttribute('aria-selected', String(resp));
+  ui.tabMias.setAttribute('aria-selected', String(!resp));
+}
+ui.tabMias.addEventListener('click', () => mostrarPestana('mias'));
+ui.tabResp.addEventListener('click', () => mostrarPestana('resp'));
+ui.verCorregido.addEventListener('change', () => pintarMarcas());
+
+/* Respuestas a la ronda anterior: estado y respuesta por bloque, en el orden de la guía. */
+function pintarRespuestas() {
+  const r = estado.resp;
+  ui.listaResp.replaceChildren();
+  const arch = estado.datos.archivo.length > 0;
+  ui.archivoRonda.hidden = !arch;
+  if (!r) {
+    ui.respResumen.textContent = estado.guia.respuestas ? 'Cargando las respuestas…' : '';
+    return;
+  }
+  const n = {};
+  r.respuestas.forEach(x => { n[x.estado] = (n[x.estado] || 0) + 1; });
+  ui.respTitulo.textContent = `Respuestas a la ronda ${r.ronda}`;
+  ui.respResumen.textContent = `${r.revisor ? r.revisor + ': ' : ''}${r.respuestas.length} comentarios. `
+    + Object.keys(ESTADOS).filter(e => n[e]).map(e => `${n[e]} ${n[e] === 1 ? ESTADOS[e].nombre.toLowerCase() : ESTADOS[e].plural}`).join(', ')
+    + '. Haz clic en una respuesta para ver el bloque ya corregido; si algo no quedó bien, coméntalo de nuevo.';
+  ui.tabResp.innerHTML = '';
+  ui.tabResp.append('Respuestas');
+  if (n.consulta) {
+    const b = document.createElement('span');
+    b.className = 'n';
+    b.textContent = n.consulta;
+    b.title = 'Preguntas para ti';
+    ui.tabResp.append(b);
+  }
+  const orden = x => { const b = estado.bloques.get(x.bloque); return b ? b.orden : 1e6 + x.hoja_antes; };
+  for (const x of [...r.respuestas].sort((a, b) => orden(a) - orden(b))) {
+    const b = estado.bloques.get(x.bloque);
+    const li = document.createElement('li');
+    const bt = document.createElement('button');
+    bt.type = 'button';
+    bt.style.setProperty('--c', (ESTADOS[x.estado] || ESTADOS.aplicado).color);
+    const cab = document.createElement('span');
+    cab.className = 'l-cab';
+    const izq = document.createElement('span');
+    const est = document.createElement('span');
+    est.className = 'estado ' + x.estado;
+    est.textContent = (ESTADOS[x.estado] || ESTADOS.aplicado).nombre;
+    izq.append(est, ` · hoja ${b ? b.hoja : x.hoja_antes}`);
+    const idb = document.createElement('span');
+    idb.textContent = x.bloque;
+    cab.append(izq, idb);
+    const t = document.createElement('span');
+    t.className = 'l-tit';
+    t.textContent = recortar(sinDolares(x.titulo || x.tipo), 70);
+    const com = document.createElement('span');
+    com.className = 'l-com';
+    com.textContent = '«' + recortar(x.comentario, 160) + '»';
+    const resp = document.createElement('span');
+    resp.className = 'l-resp';
+    resp.textContent = x.respuesta;
+    bt.append(cab, t, com, resp);
+    bt.addEventListener('click', () => {
+      if (!b) { toast('Ese bloque ya no está en la guía (se reemplazó o se movió).', true); return; }
+      b.el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      b.el.classList.remove('rev-flash');
+      void b.el.offsetWidth;
+      b.el.classList.add('rev-flash');
+    });
+    li.append(bt);
+    ui.listaResp.append(li);
+  }
 }
 
 ui.marco.addEventListener('load', () => {
@@ -184,6 +305,7 @@ ui.marco.addEventListener('load', () => {
   ajustarZoom();
   pintarMarcas();
   pintarLista();
+  pintarRespuestas();
   ui.cargando.hidden = true;
 });
 
@@ -193,6 +315,9 @@ function prepararDocumento(doc) {
     html, body { background: #eef1f4 !important; }
     [data-rev] { cursor: pointer; }
     .rev-hover { outline: 2px dashed rgba(0,90,150,.65) !important; outline-offset: -2px; }
+    .rev-ok { outline: 2px dashed var(--rev-ok) !important; outline-offset: -2px; }
+    @keyframes revflash { 0%, 60% { background-color: rgba(47,125,79,.18); } 100% { background-color: transparent; } }
+    .rev-flash { animation: revflash 1.8s ease-out; }
     .rev-con { outline: 3px solid var(--rev-c) !important; outline-offset: -3px; }
     .rev-sel { outline: 3px solid #005a96 !important; outline-offset: -3px; background-color: rgba(0,90,150,.06) !important; }
     a { pointer-events: none; }`;
@@ -257,6 +382,15 @@ new ResizeObserver(() => ajustarZoom()).observe(ui.marco);
 function pintarMarcas() {
   if (!estado.doc) return;
   estado.doc.querySelectorAll('.rev-con').forEach(el => { el.classList.remove('rev-con'); el.style.removeProperty('--rev-c'); });
+  estado.doc.querySelectorAll('.rev-ok').forEach(el => { el.classList.remove('rev-ok'); el.style.removeProperty('--rev-ok'); });
+  if (estado.resp && ui.verCorregido.checked) {
+    for (const x of estado.resp.respuestas) {
+      const b = estado.bloques.get(x.bloque);
+      if (!b) continue;
+      b.el.classList.add('rev-ok');
+      b.el.style.setProperty('--rev-ok', (ESTADOS[x.estado] || ESTADOS.aplicado).color);
+    }
+  }
   for (const c of Object.values(estado.datos.correcciones)) {
     const b = estado.bloques.get(c.bloque);
     if (!b) continue;
@@ -442,8 +576,8 @@ function bloqueTexto(s) {   // cerca de código que no choque con el contenido
   return `${cerca}text\n${s}\n${cerca}`;
 }
 
-function generarMd() {
-  const g = estado.guia, cs = ordenadas();
+function generarMd(cs = ordenadas(), version = estado.guia.version, ronda = estado.guia.ronda) {
+  const g = estado.guia;
   const revisor = ui.revisor.value.trim();
   const cuenta = {};
   cs.forEach(c => { cuenta[c.accion] = (cuenta[c.accion] || 0) + 1; });
@@ -452,7 +586,8 @@ function generarMd() {
     `# Correcciones · ${g.nombre}`, '',
     `- **Revisor:** ${revisor}`,
     `- **Fecha:** ${ahora()}`,
-    `- **Versión de la guía:** ${g.version}`,
+    `- **Ronda:** ${ronda}`,
+    `- **Versión de la guía:** ${version}`,
     `- **Correcciones:** ${cs.length} (${resumen})`, '',
   ];
   let hoja = null;
@@ -468,29 +603,42 @@ function generarMd() {
     if (c.propuesto) L.push('**Texto propuesto:**', '', bloqueTexto(c.propuesto), '');
     L.push('<details><summary>Texto actual del bloque</summary>', '', bloqueTexto(c.textoActual), '', '</details>', '');
   }
-  const datos = { formato: FORMATO, guia: g.id, version: g.version, revisor, fecha: ahora(), correcciones: cs };
+  const datos = { formato: FORMATO, guia: g.id, ronda, version, revisor, fecha: ahora(), correcciones: cs };
   L.push('<!-- editor-guias:datos (no editar: sirve para «Cargar .md»)',
          JSON.stringify(datos).replace(/-->/g, '--\\u003e'), '-->', '');
   return L.join('\n');
 }
 
-ui.descargar.addEventListener('click', () => {
-  if (!estado.guia) return;
-  const n = Object.keys(estado.datos.correcciones).length;
-  if (!n) { toast('Todavía no hay correcciones en esta guía.', true); return; }
-  if (!ui.revisor.value.trim()) { toast('Escribe tu nombre en «Revisor» antes de descargar.', true); ui.revisor.focus(); return; }
-  const blob = new Blob([generarMd()], { type: 'text/markdown;charset=utf-8' });
+function bajar(texto, nombre) {
+  const blob = new Blob([texto], { type: 'text/markdown;charset=utf-8' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `correcciones_${estado.guia.id}_${slug(ui.revisor.value) || 'revisor'}_${ahora().slice(0, 10)}.md`;
+  a.download = nombre;
   document.body.append(a);
   a.click();
   a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
+ui.descargar.addEventListener('click', () => {
+  if (!estado.guia) return;
+  const n = Object.keys(estado.datos.correcciones).length;
+  if (!n) { toast('Todavía no hay correcciones en esta ronda.', true); return; }
+  if (!ui.revisor.value.trim()) { toast('Escribe tu nombre en «Revisor» antes de descargar.', true); ui.revisor.focus(); return; }
+  const nombre = `correcciones_${estado.guia.id}_ronda${estado.guia.ronda}_${slug(ui.revisor.value) || 'revisor'}_${ahora().slice(0, 10)}.md`;
+  bajar(generarMd(), nombre);
   estado.datos.descargado = huella(estado.datos.correcciones);
   guardarDatos();
   pintarContador();
-  toast(`Descargado: ${a.download}`);
+  toast(`Descargado: ${nombre}`);
+});
+
+ui.btnArchivo.addEventListener('click', () => {
+  const ult = estado.datos.archivo[estado.datos.archivo.length - 1];
+  if (!ult) return;
+  const cs = Object.values(ult.correcciones).sort((a, b) => a.hoja - b.hoja);
+  bajar(generarMd(cs, ult.version, ult.ronda),
+        `correcciones_${estado.guia.id}_ronda${ult.ronda}_${slug(ui.revisor.value) || 'revisor'}_archivo.md`);
 });
 
 ui.cargar.addEventListener('click', () => ui.archivo.click());

@@ -1,0 +1,270 @@
+{
+ "guia": "vectores",
+ "ronda": 1,
+ "revisor": "daniel",
+ "version_revisada": "2026-10-14 10:32 · 246c033",
+ "fecha_respuesta": "2026-10-14",
+ "respuestas": [
+  {
+   "bloque": "F_suma",
+   "hoja_antes": 3,
+   "tipo": "Figura",
+   "titulo": "La cola de $v$ se pone en la punta de $u$. Las dos rutas punteadas llegan al mismo punto.",
+   "comentario": "mejorar la ubicacion de los nombres y notacion de los vectores que no queden encima de los mismos vectores, que queden cerca para entender que son esos pero no encima, se puede hacer la grafica mas grande y optimizar el espacio entre la letra y lo demas",
+   "estado": "aplicado",
+   "respuesta": "Figura más grande; cada etiqueta quedó junto a la punta de su flecha, sin tocarla."
+  },
+  {
+   "bloque": "H3e",
+   "hoja_antes": 4,
+   "tipo": "Ejemplo",
+   "titulo": "Ejemplo",
+   "comentario": "hacer que todo que de en una linea o partirlo de forma direfente el texto del final del bloque",
+   "estado": "aplicado",
+   "respuesta": "El texto final quedó en dos renglones completos."
+  },
+  {
+   "bloque": "Q_escalar",
+   "hoja_antes": 4,
+   "tipo": "Preguntas frecuentes",
+   "titulo": "Preguntas frecuentes",
+   "comentario": "\\lambda =0 espacio ?\nfalta el espacio depues del cero",
+   "estado": "aplicado",
+   "respuesta": "Ahora hay espacio entre la fórmula y el «?» (en toda la guía, no sólo aquí)."
+  },
+  {
+   "bloque": "hoja4.notas",
+   "hoja_antes": 4,
+   "tipo": "Frase de la columna de notas",
+   "titulo": "Calcula $3\\cv{1\\\\-2\\\\0}$ y $-\\cv{4\\\\0\\\\-1}$.",
+   "comentario": "mas espacio despues de la y",
+   "estado": "aplicado",
+   "respuesta": "Más margen junto a las fórmulas en la columna de notas."
+  },
+  {
+   "bloque": "hoja5.notas",
+   "hoja_antes": 5,
+   "tipo": "Frase de la columna de notas",
+   "titulo": "Dibuja $\\tfrac12 v$ y $-2v$ para $v=\\left[\\!\\begin{array}{c}4\\\\2\\end{array}\\!\\right]$.",
+   "comentario": "mucho espacio perdido, mejorar para optimizar",
+   "estado": "consulta",
+   "respuesta": "Lo entendí como espacio perdido en la hoja: agrandé la figura de la resta. ¿Te referías a otra cosa?"
+  },
+  {
+   "bloque": "Q_props",
+   "hoja_antes": 6,
+   "tipo": "Preguntas frecuentes",
+   "titulo": "Preguntas frecuentes",
+   "comentario": "no se estan dejando espacio entre las palabras y los simbolos de interrogacion",
+   "estado": "aplicado",
+   "respuesta": "Espacio fino entre las palabras y «¿», «?» en las dos guías completas."
+  },
+  {
+   "bloque": "Q_algebra",
+   "hoja_antes": 7,
+   "tipo": "Preguntas frecuentes",
+   "titulo": "Preguntas frecuentes",
+   "comentario": "no se estan dejando espacio entre las palabras y los simbolos de interrogacion",
+   "estado": "aplicado",
+   "respuesta": "Espacio fino entre las palabras y «¿», «?» en las dos guías completas."
+  },
+  {
+   "bloque": "H5",
+   "hoja_antes": 8,
+   "tipo": "Teoría",
+   "titulo": "Motivación",
+   "comentario": "no se estan dejando espacio entre las palabras y los simbolos de interrogacion",
+   "estado": "aplicado",
+   "respuesta": "Espacio fino entre las palabras y «¿», «?» en las dos guías completas."
+  },
+  {
+   "bloque": "H5g",
+   "hoja_antes": 9,
+   "tipo": "Teoría",
+   "titulo": "¿Qué significa geométricamente?",
+   "comentario": "copiar el texto en la mitad del espacio en formato vertical para que qupa la imagen en formato horizontal",
+   "estado": "aplicado",
+   "respuesta": "Texto en la mitad izquierda y figura más grande en la derecha."
+  },
+  {
+   "bloque": "H6",
+   "hoja_antes": 10,
+   "tipo": "Ejemplo",
+   "titulo": "Ejemplo · Todas las C-L de dos vectores",
+   "comentario": "Cambiar ligeramente los valores de las entradas de los vectores y revisa las respuestas con estos nuevos cambios",
+   "estado": "aplicado",
+   "respuesta": "Nuevos valores: v1=[3,−1,0,2], v2=[1,−3,4,0], x=[3,2,4,2]; cuentas rehechas (b=1, a=1, 3a+b=4≠3)."
+  },
+  {
+   "bloque": "H7c",
+   "hoja_antes": 11,
+   "tipo": "Ejemplo guiado",
+   "titulo": "Ejemplo guiado · Combinación lineal en $\\R^3$",
+   "comentario": "en la parte final, mejor poner es el vector [1,2,4] C-L de estos mismos vetores, o arrreglar la redacción",
+   "estado": "aplicado",
+   "respuesta": "Paso 3: «¿Es el vector [1,2,4] C-L de v1 y v2?»."
+  },
+  {
+   "bloque": "A1o",
+   "hoja_antes": 18,
+   "tipo": "Definición",
+   "titulo": "Definición · Vectores ortogonales y vectores paralelos",
+   "comentario": "ortogonales y vectores paralelos deben ir en dos definiciones distintas y las observaciones por aparte",
+   "estado": "aplicado",
+   "respuesta": "Dos definiciones separadas (ortogonales, paralelos) y la observación de los ángulos aparte."
+  },
+  {
+   "bloque": "Q_angulo",
+   "hoja_antes": 18,
+   "tipo": "Preguntas frecuentes",
+   "titulo": "Preguntas frecuentes",
+   "comentario": "esta muy mal esplicado respecto a lo que significa ser ortogonal la definicion y la formalizacion de la recta que contiene todos estos vdectores",
+   "estado": "aplicado",
+   "respuesta": "Reescrita: de u·v=0 se llega a {a[1,−1] | a∈R}, la recta y=−x por el origen. Pasó a la hoja 19 por espacio."
+  },
+  {
+   "bloque": "Q_angulo2",
+   "hoja_antes": 19,
+   "tipo": "Preguntas frecuentes",
+   "titulo": "Preguntas frecuentes",
+   "comentario": "no es lo mismo grados que radianes mejorar esta explicación",
+   "estado": "aplicado",
+   "respuesta": "Reescrita: son dos unidades distintas (180° = π rad); se responde en la que pida el ejercicio. Pasó a la hoja 20 por espacio."
+  },
+  {
+   "bloque": "Q_errores2",
+   "hoja_antes": 21,
+   "tipo": "Preguntas frecuentes",
+   "titulo": "Preguntas frecuentes",
+   "comentario": "el parentesisi de pi/2 no lo cubre bien",
+   "estado": "aplicado",
+   "respuesta": "Sin paréntesis: «un ángulo recto, de 90° o π/2 radianes»."
+  },
+  {
+   "bloque": "E1›ejercicio-3",
+   "hoja_antes": 22,
+   "tipo": "Ejercicio",
+   "titulo": "Ejercicio 3",
+   "comentario": "rediseñar el ejercicio para que los vectores se puedan dibujar",
+   "estado": "aplicado",
+   "respuesta": "Ejes de R³ prolongados al lado negativo (punteados) con marcas, para poder dibujar c y d."
+  },
+  {
+   "bloque": "E1›ejercicio-4",
+   "hoja_antes": 22,
+   "tipo": "Ejercicio",
+   "titulo": "Ejercicio 4",
+   "comentario": "cambiar este ejerciio por otra tematica que no sea la misma de dibujar vectores",
+   "estado": "aplicado",
+   "respuesta": "Nuevo: operaciones con los vectores del Ej. 3 y despejar x en 2x+a=b−d."
+  },
+  {
+   "bloque": "E2›ejercicio-5",
+   "hoja_antes": 23,
+   "tipo": "Ejercicio",
+   "titulo": "Ejercicio 5",
+   "comentario": "hay que solucionar el ejercicio y proyectar mejor el espacio para la solución",
+   "estado": "consulta",
+   "respuesta": "Cada inciso tiene ahora su propio recuadro. No agregué la solución (las guías van sin clave): ¿querías la solución escrita?"
+  },
+  {
+   "bloque": "E2›ejercicio-6",
+   "hoja_antes": 23,
+   "tipo": "Ejercicio",
+   "titulo": "Ejercicio 6",
+   "comentario": "hay que solucionar el ejercicio y proyectar mejor el espacio para la solución",
+   "estado": "consulta",
+   "respuesta": "Cada inciso tiene su propio recuadro; dice «norma» en vez de «longitud». ¿Querías la solución escrita?"
+  },
+  {
+   "bloque": "E2›ejercicio-8",
+   "hoja_antes": 23,
+   "tipo": "Ejercicio",
+   "titulo": "Ejercicio 8",
+   "comentario": "hay que solucionar el ejercicio y proyectar mejor el espacio para la solución",
+   "estado": "consulta",
+   "respuesta": "Cada inciso tiene su propio recuadro. ¿Querías la solución escrita?"
+  },
+  {
+   "bloque": "E3›ejercicio-9",
+   "hoja_antes": 24,
+   "tipo": "Ejercicio",
+   "titulo": "Ejercicio 9 ★",
+   "comentario": "cambiar este ejercicio, mirar algo mas acorde al contenido de la clase",
+   "estado": "aplicado",
+   "respuesta": "Nuevo 9★: valores de k para que [k,2,−1] y [k,−k,3] sean ortogonales (k=3 o k=−1)."
+  },
+  {
+   "bloque": "E3›ejercicio-10",
+   "hoja_antes": 24,
+   "tipo": "Ejercicio",
+   "titulo": "Ejercicio 10 ★",
+   "comentario": "cambiar este ejercicio, mirar algo mas acorde al contenido de la clase",
+   "estado": "aplicado",
+   "respuesta": "Nuevo 10★: ángulo entre [1,1,0] y [1,0,1] (60° = π/3) y un vector unitario ortogonal a ambos."
+  },
+  {
+   "bloque": "hoja25.titulo",
+   "hoja_antes": 25,
+   "tipo": "Título de la hoja",
+   "titulo": "Ejercicios · ¿Verdadero o falso? Retos",
+   "comentario": "este no puede ser el titulo, no todos los ejercicios son de verdadero o falso",
+   "estado": "aplicado",
+   "respuesta": "Nuevo título: «Ejercicios · Proposiciones, ortogonalidad y retos»."
+  },
+  {
+   "bloque": "E4›ejercicio-12",
+   "hoja_antes": 25,
+   "tipo": "Ejercicio",
+   "titulo": "Ejercicio 12",
+   "comentario": "dejar el espacio o las lineas para poner verdadero o falso V o F",
+   "estado": "aplicado",
+   "respuesta": "Cada proposición lleva su línea «V o F: ___»."
+  },
+  {
+   "bloque": "hoja26.titulo",
+   "hoja_antes": 26,
+   "tipo": "Título de la hoja",
+   "titulo": "Exámenes anteriores · Norma, producto punto y ángulos",
+   "comentario": "que no diga exámenes anteriores",
+   "estado": "aplicado",
+   "respuesta": "Ahora «Problemas · Norma, producto punto y ángulos» (también en la guía de matrices)."
+  },
+  {
+   "bloque": "X1›problema-2",
+   "hoja_antes": 26,
+   "tipo": "Problema de examen",
+   "titulo": "Problema 2",
+   "comentario": "mirar que el resultado de con ángulos notables",
+   "estado": "consulta",
+   "respuesta": "Ya da un ángulo notable: cos θ = 4/(4·√2) = 1/√2, θ = π/4. No lo cambié; ¿querías otro?"
+  },
+  {
+   "bloque": "X1›problema-3",
+   "hoja_antes": 26,
+   "tipo": "Problema de examen",
+   "titulo": "Problema 3",
+   "comentario": "no decir se recupera el teorema de Pitágoras, sino algo como obtenemos el teorema de Pitágoras",
+   "estado": "aplicado",
+   "respuesta": "«…obtenemos el teorema de Pitágoras»."
+  },
+  {
+   "bloque": "hoja27.titulo",
+   "hoja_antes": 27,
+   "tipo": "Título de la hoja",
+   "titulo": "Exámenes anteriores · Combinaciones lineales",
+   "comentario": "que no diga examenes anteriores",
+   "estado": "aplicado",
+   "respuesta": "Ahora «Problemas · Combinaciones lineales»."
+  },
+  {
+   "bloque": "X2›problema-5",
+   "hoja_antes": 27,
+   "tipo": "Problema de examen",
+   "titulo": "Problema 5",
+   "comentario": "que no diga examenes anteriores",
+   "estado": "aplicado",
+   "respuesta": "El título de la hoja ya no dice «Exámenes anteriores»."
+  }
+ ]
+}

@@ -129,6 +129,21 @@ textarea {
 }
 .toast.malo { background: var(--rojo); }
 
+/* ---------- rondas: pestañas y respuestas ---------- */
+.pestanas { display: flex; gap: 4px; margin: -4px 0 16px; border-bottom: 1px solid var(--linea); }
+.pestanas button { height: 36px; border-radius: 8px 8px 0 0; background: none; color: var(--gris); border: 1px solid transparent; border-bottom: 0; margin-bottom: -1px; }
+.pestanas button[aria-selected="true"] { color: var(--azul); font-weight: 600; background: var(--papel); border-color: var(--linea); }
+.pestanas button .n { display: inline-block; min-width: 20px; padding: 0 6px; margin-left: 4px; border-radius: 99px; background: var(--ocre); color: #fff; font-size: 12px; line-height: 18px; }
+.interruptor { display: flex; align-items: center; gap: 8px; font-size: 14px; margin: 12px 0 6px; cursor: pointer; }
+.interruptor input { accent-color: var(--verde); }
+.leyenda { list-style: none; padding: 0; margin: 0 0 12px; font-size: 13px; color: var(--gris); display: flex; flex-direction: column; gap: 2px; }
+.punto { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.punto.aplicado { background: var(--verde); } .punto.consulta { background: var(--ocre); } .punto.no_aplicado { background: var(--gris); }
+.lista .l-com { display: block; font-size: 13px; color: var(--gris); font-style: italic; margin: 3px 0; }
+.lista .l-resp { display: block; font-size: 13.5px; color: var(--tinta); }
+.lista .estado { font-weight: 600; }
+.lista .estado.aplicado { color: var(--verde); } .lista .estado.consulta { color: #8a5a00; } .lista .estado.no_aplicado { color: var(--gris); }
+
 /* ---------- pantallas angostas: el panel pasa abajo ---------- */
 @media (max-width: 900px) {
   body { overflow: auto; }

@@ -42,6 +42,26 @@
   <aside id="panel" class="panel" aria-label="Correcciones">
     <!-- Estado 1: nada seleccionado -->
     <div id="vista-inicio">
+      <div class="pestanas" role="tablist">
+        <button type="button" id="tab-mias" role="tab" aria-selected="true">Tus correcciones</button>
+        <button type="button" id="tab-resp" role="tab" aria-selected="false" hidden>Respuestas</button>
+      </div>
+
+      <div id="panel-resp" role="tabpanel" hidden>
+        <h2 id="resp-titulo">Respuestas a tu ronda anterior</h2>
+        <p id="resp-resumen" class="nota"></p>
+        <label class="interruptor"><input type="checkbox" id="ver-corregido" checked> Marcar en la guía los bloques corregidos</label>
+        <ul class="leyenda">
+          <li><span class="punto aplicado"></span> Aplicado</li>
+          <li><span class="punto consulta"></span> Pregunta para ti: respóndela comentando el bloque</li>
+          <li><span class="punto no_aplicado"></span> No aplicado</li>
+        </ul>
+        <ul id="lista-resp" class="lista"></ul>
+        <p id="archivo-ronda" class="nota" hidden>Tus correcciones de la ronda anterior quedaron archivadas en este navegador.
+          <button type="button" id="btn-archivo" class="enlace">Descargarlas (.md)</button></p>
+      </div>
+
+      <div id="panel-mias" role="tabpanel">
       <h2>Cómo corregir</h2>
       <ol class="pasos">
         <li>Elige la guía en el menú <b>Guía a corregir</b>.</li>
@@ -50,9 +70,10 @@
         <li>Al terminar (o cuando quieras pausar), pulsa <b>Descargar correcciones (.md)</b> y envía el archivo.</li>
       </ol>
       <p class="nota">Lo que escribes se guarda en este navegador. Si cambias de equipo o borras los datos del navegador, usa <b>Cargar .md</b> con el último archivo descargado para retomar.</p>
-      <h3 id="titulo-lista">Correcciones de esta guía</h3>
+      <h3 id="titulo-lista">Tus correcciones de esta ronda</h3>
       <p id="lista-vacia" class="vacio">Todavía no hay correcciones.</p>
       <ul id="lista" class="lista"></ul>
+      </div>
     </div>
 
     <!-- Estado 2: un bloque seleccionado -->
