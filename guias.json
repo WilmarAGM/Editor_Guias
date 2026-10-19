@@ -4,9 +4,9 @@
     "nombre": "Guía 1 · Vectores",
     "archivo": "guias/vectores.html",
     "hojas": 27,
-    "version": "5917489",
-    "ronda": 4,
-    "respuestas": "respuestas/vectores-ronda3.json"
+    "version": "0e7ddec",
+    "ronda": 5,
+    "respuestas": "respuestas/vectores-ronda4.json"
   },
   {
     "id": "matrices",

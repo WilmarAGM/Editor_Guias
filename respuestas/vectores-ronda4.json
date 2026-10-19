@@ -1,0 +1,29 @@
+{
+  "guia": "vectores",
+  "ronda": 4,
+  "revisor": "daniel",
+  "version_revisada": "5917489",
+  "fecha_respuesta": "2026-10-19",
+  "respuestas": [
+    {"bloque": "X1›problema-1", "hoja_antes": 26, "tipo": "Problema de examen", "titulo": "Problema 1",
+     "comentario": "continuar con la numeracion de los jercicios no son problemas son ejercicios",
+     "estado": "aplicado",
+     "respuesta": "Ahora es «Ejercicio 14», siguiendo al último del taller (Ej. 13). El enunciado no cambia. La regla queda en la plantilla para las guías nuevas."},
+    {"bloque": "X1›problema-2", "hoja_antes": 26, "tipo": "Problema de examen", "titulo": "Problema 2",
+     "comentario": "continuar con la numeracion de los jercicios no son problemas son ejercicios",
+     "estado": "aplicado",
+     "respuesta": "Ahora es «Ejercicio 15». El enunciado no cambia."},
+    {"bloque": "X1›problema-3", "hoja_antes": 26, "tipo": "Problema de examen", "titulo": "Problema 3",
+     "comentario": "continuar con la numeracion de los jercicios no son problemas son ejercicios",
+     "estado": "aplicado",
+     "respuesta": "Ahora es «Ejercicio 16». El enunciado no cambia."},
+    {"bloque": "X2›problema-4", "hoja_antes": 27, "tipo": "Problema de examen", "titulo": "Problema 4",
+     "comentario": "continuar con la numeracion de los jercicios no son problemas son ejercicios",
+     "estado": "aplicado",
+     "respuesta": "Ahora es «Ejercicio 17». El enunciado no cambia."},
+    {"bloque": "X2›problema-5", "hoja_antes": 27, "tipo": "Problema de examen", "titulo": "Problema 5",
+     "comentario": "continuar con la numeracion de los jercicios no son problemas son ejercicios",
+     "estado": "consulta",
+     "respuesta": "Ahora es «Ejercicio 18». Pregunta: la guía de matrices todavía dice «Problema 1…» y sus hojas se titulan «Problemas · …». ¿Le aplico el mismo cambio, siguiendo la numeración de su taller?"}
+  ]
+}
