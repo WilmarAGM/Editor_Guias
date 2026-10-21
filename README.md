@@ -31,7 +31,7 @@ Estos archivos **no se editan a mano**. Se generan en `Guias_AL/_fuente` con:
 
 ```
 python3 build_vectores.py && python3 prerender.py
-python3 build_matrices.py && python3 prerender.py ../Guia_Matrices_prototipo.html
+python3 build_matrices_y_propiedades.py && python3 prerender.py ../2_guias/Guia_Matrices_y_propiedades_prototipo.html
 python3 publicar_revision.py
 ```
 

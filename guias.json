@@ -9,17 +9,8 @@
     "respuestas": "respuestas/vectores-ronda4.json"
   },
   {
-    "id": "matrices",
-    "nombre": "Guía 2 · Matrices",
-    "archivo": "guias/matrices.html",
-    "hojas": 37,
-    "version": "9ff001c",
-    "ronda": 1,
-    "respuestas": null
-  },
-  {
     "id": "matrices_y_propiedades",
-    "nombre": "Guía 3 · matrices y propiedades",
+    "nombre": "Guía 2 · Matrices y propiedades",
     "archivo": "guias/matrices_y_propiedades.html",
     "hojas": 40,
     "version": "2aac881",
