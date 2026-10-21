@@ -12,7 +12,7 @@
       "titulo": "Propiedades · Sean $u$, $v$ y $w$ vectores en $\\R^n$ y $c$, $d$ escalares",
       "comentario": "organizar el espacio para que no quede la explicación mal partida por renglon",
       "estado": "aplicado",
-      "respuesta": "Cada descripción va ahora en un solo renglón al lado de su fórmula; para que quepan se acortaron a frases paralelas: “neutro: el vector cero”, “inverso aditivo: $-u$”, “distributiva (suma de vectores / de escalares)”, “asociativa (producto por escalar)”, “identidad: el escalar $1$”."
+      "respuesta": "Cada descripción va en un solo renglón al lado de su fórmula (frases cortas: “neutro: el vector cero”, “inverso aditivo: $-u$”, “distributiva (suma de vectores / de escalares)”…), con más aire entre filas. Para no dejar hueco en la hoja, la demostración de la propiedad 6 va más grande y trae una comprobación con números: $(2+3)[1,-2]=[5,-10]=2u+3u$ ✓."
     },
     {
       "bloque": "Q_cl2",
@@ -30,7 +30,7 @@
       "titulo": "Ejemplos",
       "comentario": "mejorar el aspecto visual y aprovechar el espacio, hay mucgho espacio perdido",
       "estado": "aplicado",
-      "respuesta": "Los dos ejemplos ($\\R^2$ y $\\R^4$) van ahora en una columna, con la figura más grande al lado y una comprobación ✓ en verde para cada uno (nueva en $\\R^4$: $\\sqrt{30/30}=1$). Abajo hay dos preguntas frecuentes nuevas: por qué $\\|v'\\|=1$ (propiedad 2 de la norma) y por qué normalizar $2v$ da el mismo $v'$."
+      "respuesta": "Los dos ejemplos ($\\R^2$ y $\\R^4$) van en una columna, con la figura más grande al lado y una comprobación ✓ en verde para cada uno (nueva en $\\R^4$: $\\sqrt{30/30}=1$). Abajo, dos preguntas frecuentes nuevas: por qué $\\|v'\\|=1$ y por qué normalizar $2v$ da el mismo $v'$."
     },
     {
       "bloque": "Q_grados",
@@ -39,7 +39,7 @@
       "titulo": "Preguntas frecuentes",
       "comentario": "Aprovechar el espacio encima de este bloque para algo mas, tal vez hacer las graficas mas grandes",
       "estado": "aplicado",
-      "respuesta": "Las cuatro figuras quedaron más grandes. Las tres de agudo/recto/obtuso ahora llevan vectores concretos, con $u=[3,0]$ y $v=[2,2]$, $[0,3]$, $[-2,2]$ ($u\\cdot v=6$, $0$, $-6$). Además, nueva pregunta frecuente: “¿Puede el ángulo pasar de $180^\\circ$?”."
+      "respuesta": "Las cuatro figuras quedaron más grandes; las de agudo/recto/obtuso llevan vectores concretos, $u=[3,0]$ y $v=[2,2]$, $[0,3]$, $[-2,2]$ ($u\\cdot v=6$, $0$, $-6$). Nueva pregunta frecuente: “¿Puede el ángulo pasar de $180^\\circ$?”."
     },
     {
       "bloque": "Q_acos",
@@ -66,7 +66,7 @@
       "titulo": "Ejercicio 9 ★",
       "comentario": "demasiado espacio solo para resolver ese ejercicio, poner dos ejercicios en este bloque",
       "estado": "consulta",
-      "respuesta": "Para no romper la numeración del taller, el ejercicio 8 (agudo/recto/obtuso) pasó de la hoja 23 a la 24, al lado del 9, que ahora ocupa media hoja. La hoja 23 queda con los ejercicios 5, 6 y 7 (más espacio para 5 y 6) y se titula “Ejercicios · Producto punto y norma”. ¿Te sirve así, o preferías agregar un ejercicio nuevo al lado del 9?"
+      "respuesta": "Para no romper la numeración del taller, el ejercicio 8 pasó de la hoja 23 a la 24, al lado del 9, que ahora ocupa media hoja; la hoja 23 queda con los ejercicios 5, 6 y 7. (En la figura del ejercicio 10, la etiqueta $u-v$ se separó de la flecha.) ¿Te sirve así, o preferías agregar un ejercicio nuevo al lado del 9?"
     }
   ]
 }
