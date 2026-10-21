@@ -1,0 +1,72 @@
+{
+  "guia": "vectores",
+  "ronda": 5,
+  "revisor": "daniel",
+  "version_revisada": "1d60027",
+  "fecha_respuesta": "2026-10-21",
+  "respuestas": [
+    {
+      "bloque": "H4",
+      "hoja_antes": 6,
+      "tipo": "Teorema",
+      "titulo": "Propiedades · Sean $u$, $v$ y $w$ vectores en $\\R^n$ y $c$, $d$ escalares",
+      "comentario": "organizar el espacio para que no quede la explicación mal partida por renglon",
+      "estado": "aplicado",
+      "respuesta": "Cada descripción va ahora en un solo renglón al lado de su fórmula; para que quepan se acortaron a frases paralelas: “neutro: el vector cero”, “inverso aditivo: $-u$”, “distributiva (suma de vectores / de escalares)”, “asociativa (producto por escalar)”, “identidad: el escalar $1$”."
+    },
+    {
+      "bloque": "Q_cl2",
+      "hoja_antes": 12,
+      "tipo": "Preguntas frecuentes",
+      "titulo": "Preguntas frecuentes",
+      "comentario": "Aprovechar el espacio encima de este bloque para algo mas",
+      "estado": "aplicado",
+      "respuesta": "El espacio se llenó con dos filas nuevas en la tabla de errores comunes: “$3+[1,2]=[4,5]$” (un escalar no se suma con un vector) y “$[a,b]=[3,5]$: $a+b=8$” (la igualdad es componente a componente: $a=3$, $b=5$). En la pregunta de los escalares no únicos, los vectores pasaron a notación fila para que quepa."
+    },
+    {
+      "bloque": "N3e",
+      "hoja_antes": 17,
+      "tipo": "Ejemplo",
+      "titulo": "Ejemplos",
+      "comentario": "mejorar el aspecto visual y aprovechar el espacio, hay mucgho espacio perdido",
+      "estado": "aplicado",
+      "respuesta": "Los dos ejemplos ($\\R^2$ y $\\R^4$) van ahora en una columna, con la figura más grande al lado y una comprobación ✓ en verde para cada uno (nueva en $\\R^4$: $\\sqrt{30/30}=1$). Abajo hay dos preguntas frecuentes nuevas: por qué $\\|v'\\|=1$ (propiedad 2 de la norma) y por qué normalizar $2v$ da el mismo $v'$."
+    },
+    {
+      "bloque": "Q_grados",
+      "hoja_antes": 18,
+      "tipo": "Preguntas frecuentes",
+      "titulo": "Preguntas frecuentes",
+      "comentario": "Aprovechar el espacio encima de este bloque para algo mas, tal vez hacer las graficas mas grandes",
+      "estado": "aplicado",
+      "respuesta": "Las cuatro figuras quedaron más grandes. Las tres de agudo/recto/obtuso ahora llevan vectores concretos, con $u=[3,0]$ y $v=[2,2]$, $[0,3]$, $[-2,2]$ ($u\\cdot v=6$, $0$, $-6$). Además, nueva pregunta frecuente: “¿Puede el ángulo pasar de $180^\\circ$?”."
+    },
+    {
+      "bloque": "Q_acos",
+      "hoja_antes": 19,
+      "tipo": "Preguntas frecuentes",
+      "titulo": "Preguntas frecuentes",
+      "comentario": "Aprovechar el espacio encima de este bloque para algo mas",
+      "estado": "aplicado",
+      "respuesta": "Nuevo ejemplo guiado encima: ángulo entre $u=[1,0]$ y $v=[-1,1]$, en grados y en radianes (obtuso: $\\cos\\theta=-1/\\sqrt2$, $\\theta=135^\\circ=3\\pi/4$; los recuadros van vacíos). No coincide con los ejercicios 8, 9 ni 15."
+    },
+    {
+      "bloque": "Q_errores2",
+      "hoja_antes": 21,
+      "tipo": "Preguntas frecuentes",
+      "titulo": "Preguntas frecuentes",
+      "comentario": "Aprovechar el espacio encima de este bloque para algo mas",
+      "estado": "aplicado",
+      "respuesta": "Dos filas nuevas en la tabla de errores: “$\\cos(\\theta)=u\\cdot v$” (falta dividir entre las normas: con $u=v=[3,4]$ daría $25$) y “$u\\cdot v<0$, así que $\\theta$ es negativo” (es obtuso, $90^\\circ<\\theta\\le180^\\circ$)."
+    },
+    {
+      "bloque": "E3›ejercicio-9",
+      "hoja_antes": 24,
+      "tipo": "Ejercicio",
+      "titulo": "Ejercicio 9 ★",
+      "comentario": "demasiado espacio solo para resolver ese ejercicio, poner dos ejercicios en este bloque",
+      "estado": "consulta",
+      "respuesta": "Para no romper la numeración del taller, el ejercicio 8 (agudo/recto/obtuso) pasó de la hoja 23 a la 24, al lado del 9, que ahora ocupa media hoja. La hoja 23 queda con los ejercicios 5, 6 y 7 (más espacio para 5 y 6) y se titula “Ejercicios · Producto punto y norma”. ¿Te sirve así, o preferías agregar un ejercicio nuevo al lado del 9?"
+    }
+  ]
+}
