@@ -12,9 +12,9 @@
     "id": "matrices_y_propiedades",
     "nombre": "Guía 2 · Matrices y propiedades",
     "archivo": "guias/matrices_y_propiedades.html",
-    "hojas": 40,
-    "version": "2aac881",
-    "ronda": 1,
-    "respuestas": null
+    "hojas": 38,
+    "version": "7008827",
+    "ronda": 2,
+    "respuestas": "respuestas/matrices_y_propiedades-ronda1.json"
   }
 ]
