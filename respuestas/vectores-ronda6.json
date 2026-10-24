@@ -1,0 +1,18 @@
+{
+  "guia": "vectores",
+  "ronda": 6,
+  "revisor": "daniel",
+  "version_revisada": "3540b46",
+  "fecha_respuesta": "2026-10-24",
+  "respuestas": [
+    {
+      "bloque": "H1",
+      "hoja_antes": 1,
+      "tipo": "Teoría",
+      "titulo": "Motivación",
+      "comentario": "la palabra dibujarlos debe ir separada \"dibujar    los\"",
+      "estado": "aplicado",
+      "respuesta": "Era la cursiva de “dibujar”: con Gochi Hand la letra inclinada se comía el espacio. Se quitó la cursiva y se añadió un espacio fino: ahora se lee “Solo podemos dibujar los casos n=2 y n=3”."
+    }
+  ]
+}
